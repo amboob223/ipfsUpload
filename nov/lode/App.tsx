@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, SafeAreaView, Button, FlatList, Image, ScrollView } from 'react-native';
+import { StyleSheet, Text, View, Button, FlatList, Image, ScrollView } from 'react-native';
 import * as FileSystem from 'expo-file-system';
 import * as ImagePicker from 'expo-image-picker';
 import { Ionicons } from '@expo/vector-icons';
@@ -79,9 +79,9 @@ export default function App() {
     const filename = item.split('/').pop();
 
     return (
-      <View style={{ flex: 1, margin: 10 }}>
-        <Image source={{ uri: item }} style={{ width: 100, height: 100 }} />
-        <Text style={{ flex: 1 }}>{filename}</Text>
+      <View style={styles.imageContainer}>
+        <Image source={{ uri: item }} style={styles.image} />
+        <Text style={styles.imageText}>{filename}</Text>
         <Ionicons.Button name="cloud-upload" onPress={() => uploadImage(item)} />
         <Ionicons.Button name="trash" onPress={() => deleteImage(item)} />
       </View>
@@ -89,31 +89,22 @@ export default function App() {
   };
 
   return (
-     <View >
-      <View style={{ flexDirection: 'row', justifyContent: 'space-evenly' }}>
+    <View style={styles.container}>
+      <View style={styles.buttonContainer}>
         <Button title="Photo Library" onPress={() => selectImage(true)} />
         <Button title="Capture Image" onPress={() => selectImage(false)} />
       </View>
 
       <ScrollView>
         {images.map((img) => (
-          <Image key={img} source={{ uri: img }} style={{ width: 300, height: 300, alignSelf: 'center' }} />
+          <Image key={img} source={{ uri: img }} style={styles.imagePreview} />
         ))}
       </ScrollView>
 
       <FlatList data={images} renderItem={renderItem} />
 
       {loading && (
-        <View
-          style={[
-            StyleSheet.absoluteFill,
-            {
-              backgroundColor: 'green',
-              alignItems: 'center',
-              justifyContent: 'center',
-            },
-          ]}
-        >
+        <View style={styles.loadingContainer}>
           <StatusBar style="auto" />
         </View>
       )}
@@ -125,6 +116,32 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  buttonContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-evenly',
+  },
+  imageContainer: {
+    flex: 1,
+    margin: 10,
+  },
+  image: {
+    width: 100,
+    height: 100,
+  },
+  imageText: {
+    flex: 1,
+  },
+  imagePreview: {
+    width: 300,
+    height: 300,
+    alignSelf: 'center',
+  },
+  loadingContainer: {
+    ...StyleSheet.absoluteFillObject,
+    backgroundColor: 'green',
     alignItems: 'center',
     justifyContent: 'center',
   },
