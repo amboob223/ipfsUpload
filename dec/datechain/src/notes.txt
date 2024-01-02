@@ -1,0 +1,5 @@
+first we got to get all the review so the user can see them 
+and also we need to be able to me a a user loggin in need to see the reviewd for the travelers
+it need to be id based so we know who the review is about so we need to re do to add review function and the get 
+
+// but today is a good start

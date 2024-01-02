@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import {ethers} from "ethers";
-
+import { Button } from 'react-bootstrap';
 function App() {
 const [connectedAddress, setConnectedAddress] = useState(null)
 
@@ -305,21 +305,38 @@ const read =async() =>{
  
 
   return (
-    <div className="App">
-        <button
-          onClick={connectMetamask}>connect Wallet</button>
-          <p>{connectedAddress}</p>
-        <input
+    <div className="App" style={{display:"flex", justifyContent:"center", alignItems:"center",height:"100vh", background:"#B76E79"}} >
+		<div style={{textAlign:"center"}}>
+	<div style={{marginBottom:"10px"}}>
+	 <Button
+	   variant="danger"
+       onClick={connectMetamask}>connect Wallet</Button>
+           
+  </div>
+	 <p>{connectedAddress}</p>
+	 <div style={{marginBottom:"10px"}}>
+		<input
           type="text"
           placeholder="leaveReview"
           value={review}
           onChange={(e)=>setReview(e.target.value)}
-        />
-        <button onClick={read}>read contract</button>
+        /> 
+	 </div>
+        <div style={{marginBottom:"10px"}}>
+			<Button variant="secondary" onClick={write}>write Contract</Button>	
+		</div>
+		
+		<div style={{marginBotton:"10px"}}>
+			       <Button  variant="success" onClick={read}>read contract</Button>
+		</div>
+ 
 		{disp}
 				
-        <button onClick={write}>write Contract</button>
+       
+			
 
+		</div>
+      
           
     </div>
   );
