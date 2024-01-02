@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 import {ethers} from "ethers";
 import { Button } from 'react-bootstrap';
+import { Alert } from "bootstrap";
 function App() {
 const [connectedAddress, setConnectedAddress] = useState(null)
 
@@ -158,145 +159,152 @@ const read =async() =>{
 
   const write = async()=>{
 	  try {
-			 const provider = new ethers.JsonRpcProvider("https://sepolia.infura.io/v3/ab449feacf2f498f9bea2740f9c55840")
-			 const ERC20_abi = [
-		   {
-			   "inputs": [
-				   {
-					   "internalType": "string",
-					   "name": "_review",
-					   "type": "string"
-				   }
-			   ],
-			   "name": "addReview",
-			   "outputs": [],
-			   "stateMutability": "nonpayable",
-			   "type": "function"
-		   },
-		   {
-			   "inputs": [],
-			   "stateMutability": "nonpayable",
-			   "type": "constructor"
-		   },
-		   {
-			   "anonymous": false,
-			   "inputs": [
-				   {
-					   "indexed": false,
-					   "internalType": "uint256",
-					   "name": "reviewId",
-					   "type": "uint256"
-				   },
-				   {
-					   "indexed": false,
-					   "internalType": "address",
-					   "name": "reviewer",
-					   "type": "address"
-				   },
-				   {
-					   "indexed": false,
-					   "internalType": "string",
-					   "name": "review",
-					   "type": "string"
-				   }
-			   ],
-			   "name": "ReviewAdded",
-			   "type": "event"
-		   },
-		   {
-			   "inputs": [],
-			   "name": "getReview",
-			   "outputs": [
-				   {
-					   "internalType": "address",
-					   "name": "",
-					   "type": "address"
-				   },
-				   {
-					   "internalType": "string",
-					   "name": "",
-					   "type": "string"
-				   }
-			   ],
-			   "stateMutability": "view",
-			   "type": "function"
-		   },
-		   {
-			   "inputs": [],
-			   "name": "latestReviewId",
-			   "outputs": [
-				   {
-					   "internalType": "uint256",
-					   "name": "",
-					   "type": "uint256"
-				   }
-			   ],
-			   "stateMutability": "view",
-			   "type": "function"
-		   },
-		   {
-			   "inputs": [],
-			   "name": "owner",
-			   "outputs": [
-				   {
-					   "internalType": "address",
-					   "name": "",
-					   "type": "address"
-				   }
-			   ],
-			   "stateMutability": "view",
-			   "type": "function"
-		   },
-		   {
-			   "inputs": [],
-			   "name": "review",
-			   "outputs": [
-				   {
-					   "internalType": "string",
-					   "name": "",
-					   "type": "string"
-				   }
-			   ],
-			   "stateMutability": "view",
-			   "type": "function"
-		   },
-		   {
-			   "inputs": [
-				   {
-					   "internalType": "uint256",
-					   "name": "",
-					   "type": "uint256"
-				   }
-			   ],
-			   "name": "reviews",
-			   "outputs": [
-				   {
-					   "internalType": "address",
-					   "name": "reviewer",
-					   "type": "address"
-				   },
-				   {
-					   "internalType": "string",
-					   "name": "review",
-					   "type": "string"
-				   }
-			   ],
-			   "stateMutability": "view",
-			   "type": "function"
-		   }
-	   ]
-	   
-			 const contractAddress = "0x49f9cA6a70Eb1B2483E660A105c8b5c991CD09a6"
-			 const privateKey = "5ccb69e0e14929628bdbdd4fbb1159f730f55c26eea04f8f370e6664546a5786";
-			 const wallet = new ethers.Wallet(privateKey,provider)
-			 const contract =  new ethers.Contract(contractAddress,ERC20_abi,wallet)
-	   
-			 
-			  const tx =  await contract.addReview(review) // we got to make this function in smart contract 
-				await tx.wait()
-				console.log(tx)
+		if(connectedAddress){
+
+			const provider = new ethers.JsonRpcProvider("https://sepolia.infura.io/v3/ab449feacf2f498f9bea2740f9c55840")
+			const ERC20_abi = [
+				{
+					"inputs": [
+						{
+							"internalType": "string",
+							"name": "_review",
+							"type": "string"
+						}
+					],
+					"name": "addReview",
+					"outputs": [],
+					"stateMutability": "nonpayable",
+					"type": "function"
+				},
+				{
+					"inputs": [],
+					"stateMutability": "nonpayable",
+					"type": "constructor"
+				},
+				{
+					"anonymous": false,
+					"inputs": [
+						{
+							"indexed": false,
+							"internalType": "uint256",
+							"name": "reviewId",
+							"type": "uint256"
+						},
+						{
+							"indexed": false,
+							"internalType": "address",
+							"name": "reviewer",
+							"type": "address"
+						},
+						{
+							"indexed": false,
+							"internalType": "string",
+							"name": "review",
+							"type": "string"
+						}
+					],
+					"name": "ReviewAdded",
+					"type": "event"
+				},
+				{
+					"inputs": [],
+					"name": "getReview",
+					"outputs": [
+						{
+							"internalType": "address",
+							"name": "",
+							"type": "address"
+						},
+						{
+							"internalType": "string",
+							"name": "",
+							"type": "string"
+						}
+					],
+					"stateMutability": "view",
+					"type": "function"
+				},
+				{
+					"inputs": [],
+					"name": "latestReviewId",
+					"outputs": [
+						{
+							"internalType": "uint256",
+							"name": "",
+							"type": "uint256"
+						}
+					],
+					"stateMutability": "view",
+					"type": "function"
+				},
+				{
+					"inputs": [],
+					"name": "owner",
+					"outputs": [
+						{
+							"internalType": "address",
+							"name": "",
+							"type": "address"
+						}
+					],
+					"stateMutability": "view",
+					"type": "function"
+				},
+				{
+					"inputs": [],
+					"name": "review",
+					"outputs": [
+						{
+							"internalType": "string",
+							"name": "",
+							"type": "string"
+						}
+					],
+					"stateMutability": "view",
+					"type": "function"
+				},
+				{
+					"inputs": [
+						{
+							"internalType": "uint256",
+							"name": "",
+							"type": "uint256"
+						}
+					],
+					"name": "reviews",
+					"outputs": [
+						{
+							"internalType": "address",
+							"name": "reviewer",
+							"type": "address"
+						},
+						{
+							"internalType": "string",
+							"name": "review",
+							"type": "string"
+						}
+					],
+					"stateMutability": "view",
+					"type": "function"
+				}
+			]
 			
-		 } catch (error) {
+			const contractAddress = "0x49f9cA6a70Eb1B2483E660A105c8b5c991CD09a6"
+			const privateKey = "5ccb69e0e14929628bdbdd4fbb1159f730f55c26eea04f8f370e6664546a5786";
+			const wallet = new ethers.Wallet(privateKey,provider)
+			const contract =  new ethers.Contract(contractAddress,ERC20_abi,wallet)
+			
+			
+			const tx =  await contract.addReview(review) // we got to make this function in smart contract 
+			await tx.wait()
+			console.log(tx)
+			
+		}else{
+			
+			new Alert("connect metamask first")
+			console.log("connect metamask first")
+		}
+		} catch (error) {
 			console.error(error)
 		 }
 

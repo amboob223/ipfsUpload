@@ -3,3 +3,42 @@ and also we need to be able to me a a user loggin in need to see the reviewd for
 it need to be id based so we know who the review is about so we need to re do to add review function and the get 
 
 // but today is a good start
+
+
+//tommorww
+    -we review some smart contract starting with this one 
+    - we write down line by line how this worked
+    -do one of the 10 greg did
+
+
+// by end of the month I want to be able to make a dapp with little to no guidance and be able to write contract knowing what i want 
+// know how to upload files on ipfs and got to icorporate with reactnative and go over file upload on that once more 
+
+
+// next month
+and be incorporated with a name for the blockchain consultancy/digital marketing firm
+-need business plan etc 
+-re do resume
+-pay off creditors
+-taxes
+-shoot wocktan content by the endo of month 
+
+
+//march start getting clients
+    -start putting stuff in google stores
+
+# https://www.robotstxt.org/robotstxt.html
+User-agent: *
+Disallow:
+
+// with this we have sucessfully connected the walled deployed a smart contract
+//we have wrote to the blockchain and read from it and rendered in a ui and styled it 
+        -- we neeeded react-bootstrap
+        -ethers
+        -remix ide
+        -infuria.io
+        -metamask
+
+
+tommorww we practice reading smart contracts and make some more test like this till we can do without help
+then next we do the solidity tutorial exercuses then the blockchin one the zero knowledge proofs

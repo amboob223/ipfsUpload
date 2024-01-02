@@ -44,3 +44,5 @@ contract DateChain {
 
     }
 }
+
+// we need to write down what each line is doing line by line 
