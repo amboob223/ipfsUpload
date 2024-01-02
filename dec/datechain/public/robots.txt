@@ -1,3 +1,15 @@
 # https://www.robotstxt.org/robotstxt.html
 User-agent: *
 Disallow:
+
+// with this we have sucessfully connected the walled deployed a smart contract
+//we have wrote to the blockchain and read from it and rendered in a ui and styled it 
+        -- we neeeded react-bootstrap
+        -ethers
+        -remix ide
+        -infuria.io
+        -metamask
+
+
+tommorww we practice reading smart contracts and make some more test like this till we can do without help
+then next we do the solidity tutorial exercuses then the blockchin one the zero knowledge proofs
