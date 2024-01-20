@@ -1,1 +1,21 @@
 to get the photos to work we had to import and then feed the source an object and to get thedata in the database we put form bdata in the srttriny ifty
+-things we have pai for the 
+    -domain name,
+    -canva
+    -business cards
+    -server hosting
+
+
+    When we get a problem we do a couple steps
+        - first establish the actual QUESTIOn
+            how would a competitor affect business 
+        -define the variables
+        -select the right model | time series cross panel etc..
+        -put in model - verify its good fstat,r2,pvalue residuals no heteroskecaity variance of errors
+        
+        -define a report
+
+        -do a macro anaylsis
+        -do a micro anaylsis
+        -do a blockchain overview
+        -make a solution 

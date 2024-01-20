@@ -98,6 +98,7 @@ const handleInputChange = (e) => {
         if (response.ok) {
       // Handle success, e.g., show a success message or redirect
       console.log('Form submitted successfully');
+      alert("we will get back with you shortly")
     } else {
       // Handle errors, e.g., show an error message
       console.error('Form submission failed');
@@ -105,6 +106,14 @@ const handleInputChange = (e) => {
     } catch (error) {
       console.error('Error submitting form:', error);
     }
+
+    setFormData({
+      name:"",
+    phone:"",
+    email:"",
+    industry:"",
+    bproblem:""
+    })
     
     
   };
