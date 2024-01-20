@@ -1,0 +1,1 @@
+to get the photos to work we had to import and then feed the source an object and to get thedata in the database we put form bdata in the srttriny ifty

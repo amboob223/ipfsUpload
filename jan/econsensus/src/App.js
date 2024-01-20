@@ -192,13 +192,14 @@ const handleInputChange = (e) => {
         </div>
         <div className="form-group">
           <label htmlFor="bproblem">Business Problem:</label>
-          <input
+          <textarea
             type="text"
             name="bproblem"
             id="bproblem"
             value={formData.bproblem}
             onChange={handleInputChange}
             placeholder="Business Problem"
+            rows={4}
           />
         </div>
         <button type="submit" id="btn">
