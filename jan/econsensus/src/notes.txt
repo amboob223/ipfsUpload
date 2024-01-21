@@ -19,3 +19,25 @@ to get the photos to work we had to import and then feed the source an object an
         -do a micro anaylsis
         -do a blockchain overview
         -make a solution 
+
+
+        -one of my use cases can be peahes and hiring 
+            -micro and macro 
+            -econometrric model explaing coefficents
+            - the diagnostic test
+            -the implications
+
+            - do a block chain overview
+            - and webdev seo and content marketing too.
+
+        - the goals these off days
+            -design the site
+            - make my stock photos
+            -make nft minting site
+            -resume
+            -put the site online
+            -in the about me we got to include info about me and my expertiese
+
+
+        -make nft for degress
+        -gsu and make a business making nft degrees for studemts that they can upload to there wallet
