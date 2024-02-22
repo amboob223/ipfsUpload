@@ -4,6 +4,7 @@ import axios from 'axios';
 function App() {
   const [connectedAddress, setConnectedAddress] = useState(null);
   const [ipfsHash, setIpfsHash] = useState(null);
+  const [metadata, setMetadata] = useState(null);
 
   const connectMetamask = async () => {
     try {
@@ -15,7 +16,11 @@ function App() {
     } catch (error) {
       console.error(error);
     }
-  };
+  }; 
+  // this is a button that connect a userwallet by seing if the window.ethereuum which is metamask on the browser ezist
+  //if it does then we make a varible called accounts which awaits ifi ts clicked it request the eth accounts using the
+  // .request from metamask and the method eth_request accounts this produces an array of accounts
+  //we get the first account and then change the state of the connected account to that 
 
   const fileChange = async (event) => {
     const selectedFile = event.target.files[0];
@@ -32,31 +37,31 @@ function App() {
         },
       });
 
+      //this method is when a file is uploaded it goes from null sending the file to the ipfs
+      //it does this on the event of an upload
+      //it makes a variable called selectedFile which takes the target of the event which is an object then we get the files property which is an arrray
+      //we get the first file from that array
+      //then we try and catch the form when we make a formdata instance and append the key 
+      //file to the value of the selected file we got from our variable 
+      //we then make the post response with axios in teh authorization key according to api form ipfs you do the bear apikey like that 
+
+
       // Get the IPFS hash for the file
       const fileIpfsHash = fileResponse.data.value.cid;
       setIpfsHash(fileIpfsHash);
 
       // Prepare JSON metadata
-      const metadata = {
+      const newMetadata = {
         name: 'Snatch',
         description: 'This is an NFT with file and metadata uploaded from my app.',
         image: `https://ipfs.io/ipfs/${fileIpfsHash}`,
       };
 
-      // Convert metadata to JSON and upload to IPFS
-      const metadataFormData = new FormData();
-      metadataFormData.append('file', new Blob([JSON.stringify(metadata)], { type: 'application/json' }));
+      // Set metadata in the state
+      setMetadata(newMetadata);
 
-      const metadataResponse = await axios.post('https://api.nft.storage/upload', metadataFormData, {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-          'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkaWQ6ZXRocjoweGQ0MDhGYzI5NDc4RGM4OEFkYUE0NzdGNzE3NGFFNmQ5RWZEMzZiYTkiLCJpc3MiOiJuZnQtc3RvcmFnZSIsImlhdCI6MTcwODQ4NDU4Nzk5MywibmFtZSI6Impzb24ifQ.AgDqsUvPNhKnKrlKjdkvMYhJNXzsCXoBTVQTSp2xxnk',
-        },
-      });
-
-      // Get the IPFS hash for the metadata
-      const metadataIpfsHash = metadataResponse.data.value.cid;
-      console.log('Metadata IPFS Hash:', metadataIpfsHash);
+      console.log('File IPFS Hash:', fileIpfsHash);
+      // console.log('Filecoin Deal Status:', fileResponse.data.value.deals[0].status);
 
     } catch (error) {
       console.error('Error uploading to NFT.storage:', error);
@@ -72,7 +77,7 @@ function App() {
         type="file"
         onChange={fileChange}
       />
-      {ipfsHash && <img src={`https://ipfs.io/ipfs/${ipfsHash}`} alt={`IPFSimage: ${ipfsHash}`} />}
+      {metadata && <img src={metadata.image} alt={`IPFSimage: ${ipfsHash}`} />}
     </div>
   );
 }
