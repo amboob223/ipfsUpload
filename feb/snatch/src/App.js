@@ -5,7 +5,8 @@ function App() {
   const [connectedAddress, setConnectedAddress] = useState(null);
   const [ipfsHash, setIpfsHash] = useState(null);
   const [metadata, setMetadata] = useState(null);
-  const [fileName,setFilename] = useState("")
+  const [fileName, setFilename] = useState("");
+  const [isWalletConnected, setIsWalletConnected] = useState(false);
 
   useEffect(() => {
     console.log("updated:", metadata);
@@ -17,6 +18,7 @@ function App() {
         const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
         const account = accounts[0];
         setConnectedAddress(account);
+        setIsWalletConnected(true);
       }
     } catch (error) {
       console.error(error);
@@ -24,11 +26,15 @@ function App() {
   }; 
 
   const fileChange = async (event) => {
+    if (!isWalletConnected) {
+      alert("Please connect your wallet first");
+      return;
+    }
+
     const selectedFile = event.target.files[0];
 
-    console.log(selectedFile.name)
-      setFilename(selectedFile.name)
-
+    console.log(selectedFile.name);
+    setFilename(selectedFile.name);
 
     try {
       // Upload the file to NFT.storage
@@ -70,11 +76,13 @@ function App() {
       <input
         type="file"
         onChange={fileChange}
+        disabled={!isWalletConnected}
       />
       
-      {metadata && <img src={`https://${ipfsHash}.ipfs.nftstorage.link/${fileName}`} alt={`IPFSimage: ${ipfsHash}`} />}
+      {metadata && <img style={{width:"100px"}} src={`https://${ipfsHash}.ipfs.nftstorage.link/${fileName}`} alt={`IPFSimage: ${ipfsHash}`} />}
     </div>
   );
 }
 
 export default App;
+ 
