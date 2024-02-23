@@ -601,7 +601,7 @@ const contract = new ethers.Contract(contractAddress,ERC_20ABI,wallet)
   const nextTokenId = parseInt(nextTokenIdBN)+106; // Convert to a regular number
 //write transaction
     console.log(nextTokenId)
-  const tx = await contract.safeMint(connectedAddress,nextTokenId,`ipfs://${ipfsHash}`)
+  const tx = await contract.safeMint(connectedAddress,nextTokenId,`https://${ipfsHash}.ipfs.nftstorage.link/`)
             await tx.wait()
             console.log(tx)
             console.log(`https://${ipfsHash}.ipfs.nftstorage.link/${fileName}`)
@@ -654,9 +654,9 @@ const contract = new ethers.Contract(contractAddress,ERC_20ABI,wallet)
 
       // Prepare JSON metadata
       const newMetadata = {
-        name: 'Snatch',
+        name: `${fileName}`,
         description: 'This is an NFT with file and metadata uploaded from my app.',
-        image: `https://ipfs.io/ipfs/${fileIpfsHash}`,
+        image: `ipfs://${fileIpfsHash}`,
       };
 
       // Set metadata in the state
